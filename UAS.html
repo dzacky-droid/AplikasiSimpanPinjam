@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinjamBarang - Sistem Simpan Pinjam Modern</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesimpanpinjam.css">
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="Logo">
+                <div class="logo-text"><h1>PinjamBarang</h1></div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" onclick="showPage('beranda', this)"><i class="fas fa-home"></i> <span>Beranda</span></a></li>
+                    <li><a href="#" class="nav-link" onclick="showPage('transaksi', this)"><i class="fas fa-exchange-alt"></i> <span>Transaksi</span></a></li>
+                    <li><a href="#" class="nav-link" onclick="showPage('profil', this)"><i class="fas fa-user"></i> <span>Profil</span></a></li>
+                    <li><a href="#" class="nav-link" onclick="showPage('login', this)"><i class="fas fa-sign-in-alt"></i> <span>Login</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section id="beranda" class="page active">
+            <div class="hero-section">
+                <h2>Selamat Datang di PinjamBarang</h2>
+                <p>Solusi cerdas manajemen simpan pinjam inventaris kantor Anda secara transparan.</p>
+            </div>
+            
+            <div class="section-card">
+                <div class="section-title"><i class="fas fa-info-circle"></i> Cara Menggunakan Aplikasi</div>
+                <div class="step-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>Login</h4>
+                        <p>Masuk ke akun Anda untuk mulai melakukan transaksi.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>Pilih Barang</h4>
+                        <p>Cari barang yang tersedia di menu Transaksi.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>Simpan/Pinjam</h4>
+                        <p>Isi form transaksi dan klik tombol simpan.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4>Pantau Riwayat</h4>
+                        <p>Lihat status transaksi Anda pada tabel daftar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transaksi" class="page">
+            <div class="section-card">
+                <div class="section-title"><i class="fas fa-edit"></i> Form Transaksi</div>
+                <form id="transaksiForm" onsubmit="handleTransaksi(event)">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label>Nama Transaksi / Peminjam</label>
+                            <input type="text" id="t_nama" required placeholder="Contoh: Budi - Peminjaman Laptop">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Barang</label>
+                            <input type="number" id="t_jumlah" required placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select id="t_kategori">
+                            <option value="Elektronik">Elektronik</option>
+                            <option value="ATK">Alat Tulis Kantor</option>
+                            <option value="Kendaraan">Kendaraan</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan Transaksi</button>
+                    <a href="#daftarTable" style="margin-left: 15px; color: var(--primary); font-size: 0.9rem;">Lihat Daftar Transaksi ↓</a>
+                </form>
+
+                <div class="table-container" id="daftarTable">
+                    <div class="section-title" style="font-size: 1.2rem;">Daftar Transaksi Terbaru</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nama Transaksi</th>
+                                <th>Jumlah</th>
+                                <th>Kategori</th>
+                                <th>Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaksiBody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="profil" class="page">
+            <div class="section-card">
+                <div class="section-title"><i class="fas fa-building"></i> Profil Aplikasi</div>
+                <div style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/9322/9322127.png" style="width: 150px;" alt="App Icon">
+                    <div style="flex: 1; min-width: 300px;">
+                        <p style="line-height: 1.8; color: #64748b;">
+                            <strong>PinjamBarang</strong> adalah platform inovatif yang dirancang khusus untuk memenuhi kebutuhan manajemen aset internal perusahaan. 
+                            Aplikasi ini memungkinkan setiap anggota organisasi untuk melakukan permohonan peminjaman, pengelolaan stok, 
+                            dan pelacakan kondisi barang secara real-time. Dibangun dengan fokus pada efisiensi kerja dan transparansi data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="login" class="page">
+            <div class="section-card" style="max-width: 450px; margin: 40px auto;">
+                <div class="section-title" style="justify-content: center;"><i class="fas fa-lock"></i> Login Akses</div>
+                <form onsubmit="event.preventDefault(); alert('Login Berhasil!'); showPage('beranda')">
+                    <div class="form-group">
+                        <label>Email / Username</label>
+                        <input type="text" placeholder="Masukkan akun" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Masuk Sekarang</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>PinjamBarang</h3>
+                <p>Sistem informasi manajemen simpan pinjam inventaris modern yang membantu perusahaan melacak aset secara real-time, akurat, dan transparan.</p>
+                <div style="margin-top: 20px; display: flex; gap: 15px; font-size: 1.2rem;">
+                    <a href="#" style="color: white; opacity: 0.6;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: white; opacity: 0.6;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color: white; opacity: 0.6;"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Menu Utama</h4>
+                <ul>
+                    <li><a href="#" onclick="showPage('beranda')">Beranda</a></li>
+                    <li><a href="#" onclick="showPage('transaksi')">Transaksi</a></li>
+                    <li><a href="#" onclick="showPage('profil')">Tentang Kami</a></li>
+                    <li><a href="#" onclick="showPage('login')">Masuk Sistem</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Hubungi Admin</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>&copy; 2024 PinjamBarang Team. All rights reserved.</div>
+            <div>Dibuat dengan <i class="fas fa-heart" style="color: var(--danger);"></i> untuk efisiensi kerja.</div>
+        </div>
+    </div>
+</footer>
+    <script>
+        function showPage(pageId, element) {
+            // Sembunyikan semua halaman
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Hapus status active di nav
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            
+            // Tampilkan halaman yang dipilih
+            document.getElementById(pageId).classList.add('active');
+            
+            // Tandai menu navigasi
+            if(element) {
+                element.classList.add('active');
+            } else {
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    if(link.getAttribute('onclick').includes(pageId)) link.classList.add('active');
+                });
+            }
+        }
+
+        // Fungsi Simulasi Simpan Transaksi (Poin 5)
+        function handleTransaksi(e) {
+            e.preventDefault();
+            const nama = document.getElementById('t_nama').value;
+            const jumlah = document.getElementById('t_jumlah').value;
+            const kategori = document.getElementById('t_kategori').value;
+            const tgl = new Date().toLocaleDateString('id-ID');
+
+            const tbody = document.getElementById('transaksiBody');
+            const row = `<tr>
+                <td><strong>${nama}</strong></td>
+                <td>${jumlah} Unit</td>
+                <td><span style="color:var(--primary)">${kategori}</span></td>
+                <td>${tgl}</td>
+            </tr>`;
+            
+            tbody.innerHTML += row;
+            alert('Transaksi Berhasil Disimpan!');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
